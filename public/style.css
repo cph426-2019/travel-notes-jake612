@@ -3,3 +3,84 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+html, body{
+    height: 100%;
+
+
+
+}
+
+.main-container {
+    background-color: #E7E1E8;
+}
+
+.content-container {
+    background-color: #F4F0F0;
+    width: 85%;
+    margin: auto;
+}
+
+.blog-post{
+    margin: auto;
+    width: 96%;
+    padding: 10px;
+    margin-bottom: 30 px;
+    border-bottom: 2px solid #989090
+}
+
+.blog-post p{
+    color: #201E1E;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.header {
+    width: 85%;
+    background-color: #7FD2EE;
+    height: 80px;
+    margin: auto;
+    
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+}
+
+.sub-links {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.nav-link{
+    font-family: Verdena, sans-serif;
+    display: flex;
+    font-size: 30px;
+    text-decoration: none;
+    color: #201E1E;
+    width: 50%;
+    height: 100%;
+    align-items: flex-end;
+    padding: 0 0 5px 5px;
+}
+
+.nav-link:hover {
+    background-color: #1C6F8B;
+}
+
+.footer{
+    width: 85%;
+    background-color: #7FD2EE;
+    bottom: 0;
+    height: 40px;
+    margin: auto;
+}
+
+.footer-text {
+    font-size: 14px;
+    text-align: center;
+}
