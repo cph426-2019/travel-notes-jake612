@@ -13,8 +13,12 @@ span {
     font-style: italic;
 }
 
+.about-text{
+    overflow: hidden;
+}
 .main-container {
     background-color: #E7E1E8;
+    height: 100%;
 }
 
 .content-container {
@@ -62,6 +66,7 @@ span {
     float: left;
     width: 20%;
     margin: 0 18px 18px 0;
+    overflow: auto;
 }
 
 .menu {
@@ -78,7 +83,16 @@ span {
 }
 
 .trip-list {
-    overflow:auto;
+    padding-left: 22px;
+    font-size: 18px;
+}
+
+.trip-list-link{
+    color:#201E1E;
+}
+
+.trip-list-link:hover{
+    color: #1C6F8B;
 }
 
 .nav-link{
