@@ -8,12 +8,9 @@ html, body{
     height: 100%;
 }
 
-p, a, h1, h2{
-    font-family: 'Lato', sans-serif;
-}
-
 span {
-    font-weight: 700;
+    font-weight: 990;
+    font-style: italic;
 }
 
 .about-text{
@@ -21,16 +18,14 @@ span {
 }
 .main-container {
     background-color: #E7E1E8;
+    height: 100%;
 }
 
 .content-container {
     background-color: #F4F0F0;
+    width: 80%;
     margin: auto;
     overflow: auto;
-}
-
-.content-container, .header, .footer{
-    width: 70%;
 }
 
 .page-header {
@@ -45,7 +40,7 @@ span {
 .content-post{
     box-sizing: content-box;
     margin: auto;
-    width: 85%;
+    width: 93%;
     padding: 20px;
     margin-bottom: 20px;
     background-color: #FBF6F6;
@@ -53,15 +48,16 @@ span {
 }
 
 .content-post p{
+    color: #201E1E;
     font-size: 20px;
     margin: 3px 0 8px 0;
-    line-height: 1.3em;
 }
 
 
 .header {
+    width: 80%;
     background-color: #7FD2EE;
-    height: 100px;
+    height: 80px;
     margin: auto;
     
 }
@@ -100,6 +96,7 @@ span {
 }
 
 .nav-link{
+    font-family: Verdena, sans-serif;
     display: flex;
     font-size: 30px;
     text-decoration: none;
@@ -115,11 +112,8 @@ span {
     background-color: #1C6F8B;
 }
 
-.other-page-background {
-    height: 100%;
-}
-
 .footer{
+    width: 80%;
     background-color: #7FD2EE;
     bottom: 0;
     height: 40px;
@@ -128,6 +122,8 @@ span {
 }
 
 .footer-text {
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
 }
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
