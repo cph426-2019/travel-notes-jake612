@@ -1,4 +1,5 @@
-* {
+
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -20,70 +21,94 @@ span {
     font-weight: 700;
 }
 
-.about-text{
-    overflow: hidden;
-}
-.main-container {
-    background-color: #E7E1E8;
+.blog-header {
+    border-bottom: 2px solid #F4F0F0;
+    margin-bottom: 5px
 }
 
 .content-container {
     background-color: #F4F0F0;
-    margin: auto;
-    overflow: auto;
-}
-
-.content-container, .header, .footer{
-    width: 70%;
-}
-
-.page-header {
-    text-align: center;
-    padding: 10px 0 10px 0;
-}
-
-.blog-header {
-    border-bottom: 2px solid #F4F0F0;
-    box-sizing: content-box;
-    margin-bottom: 5px
+    padding-bottom: 40px;
+    
 }
 
 .content-post{
-    box-sizing: content-box;
     margin: auto;
-    width: 85%;
+    width: 95%;
     padding: 20px;
     margin-bottom: 20px;
     background-color: #FBF6F6;
     overflow: auto;
 }
+.content-post:last-of-type{
+    margin-bottom: 0px;
+}
 
 .content-post p{
-    font-size: 20px;
+    font-size: 15px;
     margin-bottom: 8px;
     line-height: 1.3em;
 }
 
+.footer{
+    background-color: #7FD2EE;
+    height: 40px;
+
+}
+
+.footer-text {
+    font-size: 12px;
+    text-align: center;
+}
 
 .header {
     background-color: #7FD2EE;
-    height: 100px;
-    margin: auto;
+    height: 80px;
     
 }
 
 .headshot {
-    float: left;
-    width: 20%;
-    margin: 0 18px 18px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
     overflow: auto;
+    margin: auto;
+    padding-bottom: 10px;
 }
 
 .menu {
     display: flex;
     justify-content: center;
     height: 100%;
+}
 
+
+.nav-link{
+    display: flex;
+    font-size: 20px;
+    text-decoration: none;
+    color: #201E1E;
+    width: 50%;
+    align-items: flex-end;
+    padding: 0 0 5px 5px;
+
+}
+
+.nav-link:hover {
+    background-color: #1C6F8B;
+}
+
+
+.other-page-background{
+    height: 100%;
+    background-color: #F4F0F0;
+}
+
+.page-header {
+    text-align: center;
+    font-size: 28px;
+    padding: 10px 0 10px 0;
 }
 
 .sub-links {
@@ -94,7 +119,7 @@ span {
 
 .trip-list {
     padding-left: 22px;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .trip-list-link{
@@ -105,35 +130,51 @@ span {
     color: #1C6F8B;
 }
 
-.nav-link{
-    display: flex;
-    font-size: 30px;
-    text-decoration: none;
-    color: #201E1E;
-    width: 50%;
-    height: 100%;
-    align-items: flex-end;
-    padding: 0 0 5px 5px;
+@media only screen and (min-width: 961px){
 
+    .about-text{
+        overflow: hidden;
+    }
+    .main-container {
+        background-color: #E7E1E8;
+    }
+
+    .content-container {
+        margin: auto;
+        background-color: #F4F0F0;
+    }
+
+    .content-post{
+        width: 85%;
+    }
+
+    .content-post p{
+        font-size: 20px;
+    }
+
+    .header {
+        height: 100px;
+        
+    }
+
+    .headshot {
+        float: left;
+        width: 20%;
+        margin: 0 18px 18px 0;
+    }
+
+    .info-styling{
+        width: 900px;
+        margin: auto;
+    }
+
+    .nav-link{
+        font-size: 30px;
+    }
+
+    .footer-text {
+        font-size: 16px;
+    }
 }
 
-.nav-link:hover {
-    background-color: #1C6F8B;
-}
 
-.other-page-background {
-    height: 100%;
-}
-
-.footer{
-    background-color: #7FD2EE;
-    bottom: 0;
-    height: 40px;
-    margin: auto;
-    clear: both;
-}
-
-.footer-text {
-    font-size: 16px;
-    text-align: center;
-}
