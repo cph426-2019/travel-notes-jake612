@@ -1,0 +1,22 @@
+{
+  "name": "travel-notes-jake612",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cph426-2019/travel-notes-jake612.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cph426-2019/travel-notes-jake612/issues"
+  },
+  "homepage": "https://github.com/cph426-2019/travel-notes-jake612#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}
