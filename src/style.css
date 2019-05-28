@@ -101,6 +101,7 @@ span {
     max-height: 19vh;
     vertical-align: middle;
     text-align: center;
+    image-orientation: from-image;
 }
 
 .gallery__detail-img-wrap {
@@ -114,6 +115,14 @@ span {
     margin-top: 2vh;
     max-height: 78vh;
     max-width: 98vw;
+}
+
+.gallery__caption {
+    text-align: center;
+}
+
+.gallery__thumb.selected .gallery__thumb-img-wrap {
+    background: #7FD2EE;
 }
 
 .header {
