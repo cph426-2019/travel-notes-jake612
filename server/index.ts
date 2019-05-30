@@ -12,7 +12,19 @@ app.engine("hbs", exphbs({
 app.use(express.static("dist/"));
 
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", {title: "Jake's Travel Website"});
+});
+
+app.get("/gallery", (req, res) => {
+    res.render("gallery", {title: "Gallery"});
+});
+
+app.get("/todo", (req, res) => {
+    res.render("todo", {title: "My To-Do List", otherdiv: "other-page-background"});
+});
+
+app.get("/about", (req, res) =>{
+    res.render("about", {title: "About Me"})
 });
 
 app.listen(1234, () => console.log("listening on 1234"))
