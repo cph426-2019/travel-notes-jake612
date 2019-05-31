@@ -24,7 +24,11 @@ app.get("/todo", (req, res) => {
 });
 
 app.get("/about", (req, res) =>{
-    res.render("about", {title: "About Me"})
+    res.render("about", {title: "About Me"});
+});
+
+app.get("/map", (req, res)=>{
+    res.render("map", {title: "My Map"});
 });
 
 app.listen(1234, () => console.log("listening on 1234"))
