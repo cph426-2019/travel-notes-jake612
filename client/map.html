@@ -23,13 +23,19 @@
             </div>
         </div>
     </div>
-    <div id="map-target" class="content-container"></div>
+    <div class="content-container">
+        <h1 class="page-header">My Adventure Map</h1>
+        <div id="map"></div>
+    </div>
 
     <div class="footer">
         <p class="footer-text">Copyright @ 2019 Jake Ryan</p>
     </div>
 </div>
 </div>
-<script src="./map.tsx"></script>
+<script src="./mapTest.ts"></script>
+<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&callback=initMap">
+    </script>
 </body>
 </html>

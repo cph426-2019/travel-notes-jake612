@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
     "start": "ts-node server/index.ts",
     "build": "parcel build client/{*.css,gallery.tsx,main.ts,map.tsx}",
     "prod": "git pull && npm install && npm run build && sudo NODE_ENV=production sudo npm run start",
@@ -35,8 +34,11 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
+    "@types/googlemaps": "^3.36.2",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
+    "fetch-google-maps": "^2.0.1",
+    "google-maps-react": "^2.0.2",
     "handlebars": "^4.1.2"
   }
 }
