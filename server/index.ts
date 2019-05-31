@@ -31,5 +31,7 @@ app.get("/map", (req, res)=>{
     res.render("map", {title: "My Map"});
 });
 
-app.listen(1234, () => console.log("listening on 1234"))
+const PORT = process.env.NODE_ENV === "production" ? 80 : 1234;
+
+app.listen(PORT, () => console.log(`listening on ${PORT}`))
     .on("error", (e) => console.error(e));
