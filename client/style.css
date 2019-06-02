@@ -24,6 +24,7 @@ span {
 #map {
     height: 500px;  
     width: 100%;  /* The width is the width of the web page */
+    margin-bottom: 20px;
 }
 
 .blog-header {
