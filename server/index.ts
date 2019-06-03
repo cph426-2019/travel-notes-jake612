@@ -1,8 +1,13 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
+import {DB, Rows} from "./db";
+
+import * as moment from "moment";
+
 import * as express from "express";
 import * as exphbs from "express-handlebars";
+import { async } from "q";
 
 let app = express();
 app.set("view engine", "hbs");
@@ -14,8 +19,12 @@ app.engine("hbs", exphbs({
 
 app.use(express.static("dist/"));
 
-app.get("/", (req, res) => {
-    res.render("index", {title: "Jake's Travel Website"});
+app.get("/", async (req, res) => {
+    let [rows] = await DB.query<Rows>("SELECT * FROM posts ORDER BY publishAt DESC");
+    rows.forEach((row)=>{
+        row.publishAt = moment(row.publishAt).format("M/d/YYYY");
+    });
+    res.render("index", {title: "Jake's Travel Website", posts: rows});
 });
 
 app.get("/gallery", (req, res) => {
@@ -32,6 +41,33 @@ app.get("/about", (req, res) =>{
 
 app.get("/map", (req, res)=>{
     res.render("map", {title: "My Map"});
+});
+
+app.get("/todos", async(req, res)=>{
+    // Destructured assignment of rows without fields
+    let [rows] = await DB.query<Rows>("Select * FROM todos");
+    res.render("todos-demo", {todos:rows});
+
+});
+
+app.get("/todos/eat", async(req, res)=>{
+    let sql ="INSERT INTO `todos` (`description`, `url`) VALUES (:description, :url)";
+    await DB.execute(
+        sql,
+        {description: "EAT", url:"http://food.com"}
+    );
+    res.redirect("/todos");
+
+} );
+
+app.get("/todos/:id", async(req, res)=>{
+    let [rows] = await DB.query<Rows>("SELECT * FROM todos WHERE id = :id", {id: req.params.id});
+    res.json(rows);
+})
+
+app.get("/todos.json", async (req, res)=>{
+    let [rows]= await DB.query<Rows>("SELECT * FROM todos");
+    res.json(rows);
 });
 
 export let main = async()=>{

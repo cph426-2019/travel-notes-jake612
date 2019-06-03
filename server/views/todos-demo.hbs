@@ -1,0 +1,9 @@
+<ul>
+{{#each todos}}
+    {{#if url}}
+        <a href={{url}}>{{description}}</a>
+    {{else}}
+        <li>{{description}}</li>
+    {{/if}}
+{{/each}}
+</ul>
