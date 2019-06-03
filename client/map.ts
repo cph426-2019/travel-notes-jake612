@@ -3,6 +3,7 @@ import MapPathData from "./script/MapPathData";
 import Data from "./script/Data";
 
 let initMap = ()=>{
+    console.log("reached init");
     let cpnhgn = {lat: 55.6761, lng: 12.5683};
     let map = new google.maps.Map(
       document.getElementById('map'), {zoom: 6, center: cpnhgn}
