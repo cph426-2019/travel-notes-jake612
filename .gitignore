@@ -1,7 +1,6 @@
 node_modules/**
 dist/**
 .cache/**
-./client/map.tsx
-map.js
-map.js.map
+./client/map.ts
+.env
 
