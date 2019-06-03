@@ -1,5 +1,6 @@
 import MapData from "./script/MapData";
-import MapPathData from "./script/MapPathData"
+import MapPathData from "./script/MapPathData";
+import Data from "./script/Data";
 
 let initMap = ()=>{
     let cpnhgn = {lat: 55.6761, lng: 12.5683};
@@ -7,6 +8,7 @@ let initMap = ()=>{
       document.getElementById('map'), {zoom: 6, center: cpnhgn}
     );
     map.addListener("click", ()=>{centerMap(map, cpnhgn, 6)});
+    map.addListener("click", ()=>{resetMarkerInfo()});
     
     createMarkers(map, MapData);
     createPathline(map, MapPathData);
@@ -48,11 +50,35 @@ let markerInfo = (marker: google.maps.Marker)=>{
     let info = MapData[parseInt(marker.getLabel() as unknown as string)-1];
     let targetDiv = document.getElementById("map-info-target");
 
+    resetMarkerInfo();
+
+    targetDiv.appendChild(elementCreator("h2",info.name));
+    /*let gallery = document.createElement("ul");
+    gallery.className = "gallery__master";
+    for(let i = 0; i < Data.length; i++){
+        if(i%2===0){
+            let thumb = document.createElement("li");
+            thumb.className = "gallery__thumb";
+            let wrapper = document.createElement("div");
+            wrapper.className = "gallery__thumb-img-wrap";
+            let image = document.createElement("img");
+            image.className="gallery__thumb-img";
+            image.src = Data[i].src;
+            wrapper.appendChild(image);
+            thumb.appendChild(wrapper);
+            gallery.appendChild(thumb);
+        }
+    }
+    targetDiv.appendChild(gallery);*/
+    
+}
+
+let resetMarkerInfo = ()=>{
+    let targetDiv = document.getElementById("map-info-target");
+    
     while(targetDiv.firstChild){
         targetDiv.removeChild(targetDiv.firstChild);
     }
-
-    targetDiv.appendChild(elementCreator("h2",info.name));
 }
 
 // Centers the map on a given marker
@@ -69,6 +95,7 @@ let centerMap = (map: google.maps.Map, center: {lat: number, lng: number}, zoomV
 // Simple function for creating paragraphs
 let elementCreator = (type: string, text: string):HTMLElement =>{
     let paragraph = document.createElement(type);
+    if(text === null){return paragraph;}
     let pText = document.createTextNode(text);
     paragraph.appendChild(pText);
     return paragraph;

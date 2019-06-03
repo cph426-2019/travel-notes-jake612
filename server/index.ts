@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import * as express from "express";
 import * as exphbs from "express-handlebars";
 
@@ -31,7 +34,9 @@ app.get("/map", (req, res)=>{
     res.render("map", {title: "My Map"});
 });
 
-const PORT = process.env.NODE_ENV === "production" ? 80 : 1234;
-
-app.listen(PORT, () => console.log(`listening on ${PORT}`))
+export let main = async()=>{
+    app.listen(process.env.PORT, () => console.log(`listening on ${process.env.PORT}`))
     .on("error", (e) => console.error(e));
+}
+
+main();
