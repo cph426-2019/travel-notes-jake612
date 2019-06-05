@@ -141,13 +141,22 @@ router.get("/posts/:id", async(req, res)=>{
 
 router.post("/posts/:id", async(req, res)=>{
     try{
-        let query = "INSERT INTO posts (title, body, publishAt, location) VALUES :title, :body, :publishAt, :location";
+     // let query = "INSERT INTO posts (title, body, publishAt, location) VALUES :title, :body, :publishAt, :location";
+        let query = `UPDATE posts     
+                   SET title=:title, 
+                       body=:body,
+                       publishAt=:publishAt,
+                       location=:location 
+                   WHERE id=:id`;
+        // object for the parameters
         let params = {
-            title: req.params.title,
-            body: req.params.body,
-            publishAt: req.params.publishAt,
-            location: req.params.location
+            id: req.params.id,
+            title: req.body.title,
+            body: req.body.body,
+            publishAt: req.body.publishAt,
+            location: req.body.location
         }
+    
         let [result] =await DB.execute<InsertResult>(query, params);
         result.insertId;
         res.redirect(`${path(req)}${result.insertId}?message=Saved!`);
