@@ -1,0 +1,50 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+    <li class="breadcrumb-item"><a href="/admin/posts">Posts</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+        {{# if post.id }}
+            {{ post.title }}
+        {{else}}
+            New
+        {{/if}}
+    </li>
+  </ol>
+</nav>
+
+<form action="{{ action }}" method="POST">
+    {{# if message }}
+        <div class="alert alert-dark">{{ message }}</div>
+    {{/if}}
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="form-control" value="{{ post.title }}">
+        <small class="form-text text-muted">Title of the blog post</small>
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <!--I'll need this for my blog ... but add bootstrap style -->
+        <textarea name="body" id="body" class="form-control rounded-0">
+            {{post.body}}
+        </textarea>
+        <small class="form-text text-muted">HTML body of text</small>
+    </div>
+    <div class="form-group">
+        <label for="publishAt">Published At</label>
+        <input type="text" name="publishAt" id="publishAt" class="form-control" value="{{ post.publishAt }}">
+        <small class="form-text text-muted">Update publish date when edited</small>
+    </div>
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" name="location" id="location" class="form-control" value="{{ post.location }}">
+        <small class="form-text text-muted">Update post location</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/admin/posts" class="btn btn-secondary">Back</a>
+</form>
+{{# if post.id }}
+<hr>
+<form action="{{ action }}/delete" method="POST" onsubmit="return confirm('Are you sure?')">
+    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+</form>
+{{/if}}
