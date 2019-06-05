@@ -157,9 +157,8 @@ router.post("/posts/:id", async(req, res)=>{
             location: req.body.location
         }
     
-        let [result] =await DB.execute<InsertResult>(query, params);
-        result.insertId;
-        res.redirect(`${path(req)}${result.insertId}?message=Saved!`);
+        await DB.execute<Rows>(query, params);
+        res.redirect(`${path(req)}?message=Saved!`);
     }catch(e){
         console.log(e);
         res.redirect(`${path(req)}?message=Post Failure`);
