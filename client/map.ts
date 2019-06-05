@@ -1,24 +1,32 @@
-import MapData from "./script/MapData";
 import MapPathData from "./script/MapPathData";
 import Data from "./script/Data";
+import MapData from "./script/MapData";
 
 let initMap = ()=>{
-    console.log("reached init");
     let cpnhgn = {lat: 55.6761, lng: 12.5683};
     let map = new google.maps.Map(
       document.getElementById('map'), {zoom: 6, center: cpnhgn}
     );
     map.addListener("click", ()=>{centerMap(map, cpnhgn, 6)});
     map.addListener("click", ()=>{resetMarkerInfo()});
+
+    let mapData = fetch("/mapdata.json")
+    .then((res)=>{
+        return res.json();
+    })
+    .then((json)=>{
+        createMarkers(map, json);
+    });
     
-    createMarkers(map, MapData);
-    createPathline(map, MapPathData);
 }
 
 // Given a created map and an array of coordinates, add markers to the map
-let createMarkers = (map: google.maps.Map, data: {name: string, lat:number, lng:number,  desc: string}[])=>{
+let createMarkers = (map: google.maps.Map, data: {name: string, lat, lng, desc: string}[])=>{
     let count = 1;
     data.forEach((location)=>{
+        location.lat = parseFloat(location.lat);
+        location.lng = parseFloat(location.lng);
+
         let marker = new google.maps.Marker({position: location, label: count.toString(), map:map});
         let infoWindow = new google.maps.InfoWindow({
             content: "<h2>"+ location.name + "</h2>"+"<p>" + location.desc + "</p>" 
@@ -101,6 +109,5 @@ let elementCreator = (type: string, text: string):HTMLElement =>{
     paragraph.appendChild(pText);
     return paragraph;
 }
-
 
 window["initMap"] = initMap;

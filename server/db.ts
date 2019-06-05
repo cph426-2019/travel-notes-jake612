@@ -1,6 +1,7 @@
 import * as mysql from "mysql2/promise";
 
 export type Rows = mysql.RowDataPacket[];
+export type InsertResult = mysql.OkPacket;
 
 // Sets up a pool of connections all ready to go and be authenticated, avoid inefficiency
 export const DB: mysql.Pool = mysql.createPool({

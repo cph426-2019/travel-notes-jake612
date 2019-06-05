@@ -7,7 +7,8 @@ import * as moment from "moment";
 
 import * as express from "express";
 import * as exphbs from "express-handlebars";
-import { async } from "q";
+
+import admin from "./admin";
 
 let app = express();
 app.set("view engine", "hbs");
@@ -18,6 +19,9 @@ app.engine("hbs", exphbs({
 }));
 
 app.use(express.static("dist/"));
+app.use(express.urlencoded({extended: true}));
+
+app.use("/admin", admin);
 
 app.get("/", async (req, res) => {
     let [rows] = await DB.query<Rows>("SELECT * FROM posts ORDER BY publishAt DESC");
@@ -41,6 +45,11 @@ app.get("/about", (req, res) =>{
 
 app.get("/map", (req, res)=>{
     res.render("map", {title: "My Map"});
+});
+
+app.get("/mapdata.json", async (req, res)=>{
+    let [rows] = await DB.query<Rows>("SELECT * FROM locations");
+    res.json(rows);
 });
 
 app.get("/todos", async(req, res)=>{
