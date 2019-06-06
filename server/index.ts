@@ -44,7 +44,8 @@ app.get("/about", (req, res) =>{
 });
 
 app.get("/map", (req, res)=>{
-    res.render("map", {title: "My Map"});
+    let urlRet = `https://maps.googleapis.com/maps/api/js?key=${process.env.API_KEY}&callback=initMap`;
+    res.render("map", {title: "My Map", url: urlRet});
 });
 
 app.get("/mapdata.json", async (req, res)=>{
