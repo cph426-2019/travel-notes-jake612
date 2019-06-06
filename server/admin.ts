@@ -93,14 +93,15 @@ router.get("/posts/new", (req, res)=>{
 router.post("/posts", async(req, res)=>{
     try {
         let sql = `INSERT INTO posts
-                    (title, body, publishAt, location) VALUES
-                    (:title, :body, :publishAt, :location)`;
+                    (title, body, publishAt, location, refCities) VALUES
+                    (:title, :body, :publishAt, :location, :refCities)`;
         // object for the parameters
         let params = {
             title: req.body.title,
             body: req.body.body,
             publishAt: req.body.publishAt,
-            location: req.body.location
+            location: req.body.location,
+            refCities: req.body.refCities
         };
 
         if(req.body.body ===""||req.body.title === ""||req.body.publishAt===""||req.body.location===""){
@@ -147,7 +148,8 @@ router.post("/posts/:id", async(req, res)=>{
                    SET title=:title, 
                        body=:body,
                        publishAt=:publishAt,
-                       location=:location 
+                       location=:location,
+                       refCities=:refCities 
                    WHERE id=:id`;
         // object for the parameters
         let params = {
@@ -155,7 +157,8 @@ router.post("/posts/:id", async(req, res)=>{
             title: req.body.title,
             body: req.body.body,
             publishAt: req.body.publishAt,
-            location: req.body.location
+            location: req.body.location,
+            refCities: req.body.refCities
         }
     
         await DB.execute<Rows>(query, params);
