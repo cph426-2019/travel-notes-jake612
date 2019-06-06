@@ -52,6 +52,11 @@ app.get("/mapdata.json", async (req, res)=>{
     res.json(rows);
 });
 
+app.get("/posts.json", async (req, res)=>{
+    let [rows] = await DB.query<Rows>("SELECT * FROM posts WHERE refCities IS NOT NULL ORDER BY publishAt DESC");
+    res.json(rows);
+});
+
 app.get("/todos", async(req, res)=>{
     // Destructured assignment of rows without fields
     let [rows] = await DB.query<Rows>("Select * FROM todos");

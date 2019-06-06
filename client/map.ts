@@ -1,6 +1,7 @@
 import MapPathData from "./script/MapPathData";
 import Data from "./script/Data";
-import MapData from "./script/MapData";
+
+let blogPostJson;
 
 let initMap = ()=>{
     let cpnhgn = {lat: 55.6761, lng: 12.5683};
@@ -10,12 +11,20 @@ let initMap = ()=>{
     map.addListener("click", ()=>{centerMap(map, cpnhgn, 6)});
     map.addListener("click", ()=>{resetMarkerInfo()});
 
-    let mapData = fetch("/mapdata.json")
+    fetch("/mapdata.json")
     .then((res)=>{
         return res.json();
     })
     .then((json)=>{
         createMarkers(map, json);
+    });
+
+    fetch("/posts.json")
+    .then((res)=>{
+        return res.json();
+    })
+    .then((json)=>{
+        blogPostJson = json;
     });
     
 }
@@ -38,7 +47,7 @@ let createMarkers = (map: google.maps.Map, data: {name: string, lat, lng, desc: 
             infoWindow.close();
         });
         marker.addListener("click", ()=>{
-             markerInfo(marker);
+             markerInfo(marker, data);
              centerMapOnMarker(map, marker, 9);
         });
         count+=1;
@@ -55,30 +64,37 @@ let createPathline = (map: google.maps.Map, data: {lat:number, lng:number}[])=>{
 }
 
 // Gets the info from the marker and displays under map
-let markerInfo = (marker: google.maps.Marker)=>{
-    let info = MapData[parseInt(marker.getLabel() as unknown as string)-1];
+let markerInfo = (marker: google.maps.Marker,data: {name: string, lat: string, lng: string, desc: string}[])=>{
+    let info = data[parseInt(marker.getLabel() as unknown as string)-1];
     let targetDiv = document.getElementById("map-info-target");
 
     resetMarkerInfo();
 
     targetDiv.appendChild(elementCreator("h2",info.name));
-    /*let gallery = document.createElement("ul");
+    let gallery = document.createElement("ul");
     gallery.className = "gallery__master";
-    for(let i = 0; i < Data.length; i++){
-        if(i%2===0){
+    Data.forEach((image)=>{
+        if(image.city===info.name.toLowerCase()){
             let thumb = document.createElement("li");
             thumb.className = "gallery__thumb";
             let wrapper = document.createElement("div");
             wrapper.className = "gallery__thumb-img-wrap";
-            let image = document.createElement("img");
-            image.className="gallery__thumb-img";
-            image.src = Data[i].src;
-            wrapper.appendChild(image);
+            let newImage = document.createElement("img");
+            newImage.className="gallery__thumb-img";
+            newImage.src = image.src;
+            wrapper.appendChild(newImage);
             thumb.appendChild(wrapper);
             gallery.appendChild(thumb);
         }
+    });
+
+    if(gallery.childElementCount===0){
+        gallery.appendChild(elementCreator("p", "No Images"));
     }
-    targetDiv.appendChild(gallery);*/
+        
+    targetDiv.appendChild(gallery);
+
+    blogPostRenderer(targetDiv, info.name.toLowerCase());
     
 }
 
@@ -108,6 +124,40 @@ let elementCreator = (type: string, text: string):HTMLElement =>{
     let pText = document.createTextNode(text);
     paragraph.appendChild(pText);
     return paragraph;
+}
+
+// Method for retrieving blog posts and posting to targetDiv
+let blogPostRenderer = (targetDiv: HTMLElement, locationName: String)=>{
+    
+    let relevantPosts = [];
+    blogPostJson.forEach((post)=>{
+        post.refCities.split(";").forEach((city) => {
+            if(city.toLowerCase() === locationName){relevantPosts.push(post)};
+        });
+    });
+
+    if(relevantPosts.length === 0){
+        targetDiv.appendChild(elementCreator("h2", "No Blog Posts"));
+    }else{
+        targetDiv.appendChild(elementCreator("h2", "Blog Posts"));
+    }
+
+    relevantPosts.forEach((post)=>{
+        let postDiv = document.createElement("div");
+        let header = document.createElement("div");
+        header.className = "blog-header";
+        let title = elementCreator("h3", post.title);
+        title.className="blog-post-title";
+        let postMeta = elementCreator("p", post.publishAt + " - " + post.location);
+        header.appendChild(title);
+        header.appendChild(postMeta);
+        postDiv.appendChild(header);
+        let bodyDiv = document.createElement("div");
+        bodyDiv.innerHTML = post.body;
+        postDiv.appendChild(bodyDiv);
+        targetDiv.appendChild(postDiv);
+        
+    });
 }
 
 window["initMap"] = initMap;
