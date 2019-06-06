@@ -28,5 +28,30 @@ export default [
         "src": "./img/viking-boat.jpeg",
         "caption": "Sitting on a authentic viking boat recreation",
         "city": "copenhagen"
-    }
+    },
+    {
+        "thumbSrc": "./img/jump-thumb.jpg",
+        "src": "./img/jump.jpg",
+        "caption": "Freezing water below",
+        "city": "copenhagen"
+    },
+    {
+        "thumbSrc": "./img/reffen-thumb.jpg",
+        "src": "./img/reffen.jpg",
+        "caption": "The boys on the prowl",
+        "city": "copenhagen"
+    },
+    {
+        "thumbSrc": "./img/rooftop-thumb.jpg",
+        "src": "./img/rooftop.jpg",
+        "caption": "Above the roofs of Aarhus",
+        "city": "aarhus"
+    },
+    {
+        "thumbSrc": "./img/schlumped-thumb.jpg",
+        "src": "./img/schlumped.jpg",
+        "caption": "Sleepy boi in Malmö",
+        "city": "malmö"
+    },
+
 ];
